@@ -15,7 +15,7 @@ import java.util.Map;
         "lastPrice",
         "ticker"
 })
-public class Quote {
+public class Quote implements Entity<String>{
 
     @JsonProperty("askPrice")
     private Integer askPrice;
@@ -25,8 +25,6 @@ public class Quote {
     private Integer bidPrice;
     @JsonProperty("bidSize")
     private Integer bidSize;
-    @JsonProperty("id")
-    private String id;
     @JsonProperty("lastPrice")
     private Integer lastPrice;
     @JsonProperty("ticker")
@@ -75,13 +73,15 @@ public class Quote {
     }
 
     @JsonProperty("id")
+    @Override
     public String getId() {
-        return id;
+        return ticker;
     }
 
     @JsonProperty("id")
+    @Override
     public void setId(String id) {
-        this.id = id;
+        this.ticker = id;
     }
 
     @JsonProperty("lastPrice")
@@ -104,14 +104,6 @@ public class Quote {
         this.ticker = ticker;
     }
 
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
 
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
 
 }

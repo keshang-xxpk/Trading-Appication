@@ -2,6 +2,7 @@ package ca.jrvs.apps.trading.dao;
 
 import ca.jrvs.apps.trading.model.config.MarketDataConfig;
 import ca.jrvs.apps.trading.model.domain.IexQuote;
+import ca.jrvs.apps.trading.util.JsonUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -11,7 +12,6 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.apache.tomcat.util.buf.StringUtils;
 import org.json.JSONObject;
-import org.kopitubruk.util.json.JSONUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +66,8 @@ public class MarketDataDao {
     IexQuotesJson.keys().forEachRemaining(ticker -> {
       try {
         String quoteStr = ((JSONObject) IexQuotesJson.get(ticker)).get("quote").toString();
-        IexQuote iexQuote = JSONUtil.to
+        IexQuote iexQuote = JsonUtil.toObjectFromJson(quoteStr,IexQuote.class);
+        iexQuotes.add(iexQuote);
       } catch (IOException e) {
         throw new DataRetrievalFailureException("Unable parse response:" + IexQuotesJson.get(ticker),e);
       }

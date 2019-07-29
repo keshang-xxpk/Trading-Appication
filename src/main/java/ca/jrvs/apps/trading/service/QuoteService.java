@@ -2,11 +2,9 @@ package ca.jrvs.apps.trading.service;
 
 import ca.jrvs.apps.trading.dao.MarketDataDao;
 import ca.jrvs.apps.trading.dao.QuoteDao;
-import ca.jrvs.apps.trading.dao.ResourceNotFoundException;
 import ca.jrvs.apps.trading.model.domain.IexQuote;
 import ca.jrvs.apps.trading.model.domain.Quote;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,6 +42,7 @@ public class QuoteService {
         return quote;
     }
 
+
     /**
      * Add a list of new tickers to the quote table. Skip existing ticker(s).
      *  - Get iexQuote(s)
@@ -57,19 +56,11 @@ public class QuoteService {
      */
     public void initQuotes(List<String> tickers) {
         //buildQuoteFromIexQuote helper method is used here
-        try {
-            List<IexQuote> iexQuoteList = tickers.stream().map(marketDataDao::findIexQuoteByTicker).collect(Collectors.toList());
-        } catch (ResourceNotFoundException e){
-            throw new ResourceNotFoundException("ticker not find");
-        }
-        try {
-            List<IexQuote> iexQuoteList = tickers.stream().map(marketDataDao::findIexQuoteByTicker).collect(Collectors.toList());
-        } catch (DataAccessException e) {
-            throw e;
-        }
-        List<Quote> quoteList = iexQuoteList.stream().map(QuoteService::buildQuoteFromIexQuote).collect(Collectors.toList());
+
+        List<IexQuote> securityList = tickers.stream().map(marketDataDao::findIexQuoteByTicker).collect(Collectors.toList());
+        List<Quote> quoteList = securityList.stream().map(QuoteService::buildQuoteFromIexQuote).collect(Collectors.toList());
         quoteList.forEach(quote -> {
-            if(!quoteDao.exitsById(quote.getId())) {
+            if(!quoteDao.existsById(quote.getId())) {
                 quoteDao.save(quote);
             }
         });
