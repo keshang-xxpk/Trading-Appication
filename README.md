@@ -7,6 +7,7 @@
 ## Quick Start
 - Prequiresites:
   <p style="text-indent:2em">-JRD virtual machine</p>
+  &#8195; -JRD virtual machine
   <p style="text-indent:2em">- centOS 7</p>
   <p style="text-indent:2em">- Java 8</p>
 - PSQL init
