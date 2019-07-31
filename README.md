@@ -4,10 +4,10 @@
 - Front-end developer,mobile developer,traders and use it easliy.
 - It is a MicroService which implemented with SpringBoot framework and build JDBC through Spring.Iex market data as our source data and PSQL is the database I use in this project.
 -Quick link:
-  \[SpringBoot](https://spring.io/projects/spring-boot)
-  \[PSQL](https://www.postgresql.org)
-  \[IEX Market data](https://iexcloud.io)
-  \[Swagger](https://swagger.io)
+  [SpringBoot](https://spring.io/projects/spring-boot)<br>
+  [PSQL](https://www.postgresql.org)
+  [IEX Market data](https://iexcloud.io)
+  [Swagger](https://swagger.io)
   
 
 
