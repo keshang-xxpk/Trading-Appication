@@ -6,9 +6,9 @@
 
 ## Quick Start
 - Prequiresites:
-      -JRD virtual machine       
-      - centOS 7        
-      - Java 8        
+      \-JRD virtual machine       
+      \- centOS 7        
+      \- Java 8        
             
 - PSQL init
 - git clone and mvn build
