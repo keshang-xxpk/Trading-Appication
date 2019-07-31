@@ -9,7 +9,7 @@
       \-JRD virtual machine       
       \- centOS 7        
       \- Java 8   
-      \Docker(17.05 or higher which support multi-stage build)
+      \- Docker(17.05 or higher which support multi-stage build)
             
 - PSQL init
 - git clone and mvn build
