@@ -5,7 +5,7 @@
 - It is a MicroService which implemented with SpringBoot framework and build JDBC through Spring.Iex market data as our source data and PSQL is the database I use in this project.
 
 ## Quick Start
-- Prequiresites:
+      - Prequiresites:
       \-JRD virtual machine       
       \- centOS 7        
       \- Java 8        
