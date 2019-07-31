@@ -5,12 +5,14 @@
 - It is a MicroService which implemented with SpringBoot framework and build JDBC through Spring.Iex market data as our source data and PSQL is the database I use in this project.
 
 ## Quick Start
-      - Prequiresites:
+ - Prequiresites:
       \-JRD virtual machine       
       \- centOS 7        
-      \- Java 8        
+      \- Java 8   
+      \Docker(17.05 or higher which support multi-stage build)
             
 - PSQL init
 - git clone and mvn build
 - Strating Springboot app using a shell script
 - Sign up an account on IEX.
+-IEX token for getting market data (https://iexcloud.io/docs/api/)
