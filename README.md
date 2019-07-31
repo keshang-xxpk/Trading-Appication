@@ -28,9 +28,23 @@
 ### Swagger
 - Swagger is a powerful yet easy-to-use suite of API developer tools for teams and individuals, enabling development across the entire API lifecycle, from design and documentation, to test and deployment.
 - Swagger provides a set of tools that help programmers generate client or server code and install self-generated documentation for web services.
-### App controller
+### Trading App controller
+
 #### app-controller
+- **GET**
 #### dashboard-controller
+- **GET**
 #### order-controller
+- **POST**
 #### quote-controller
+- **GET**
+- **GET**
+- **POST**
+- **PUT**
+- **PUT**
 #### trader-controller
+- **DELETE**
+- **POST**
+- **POST**
+- **PUT**
+- **PUT**
