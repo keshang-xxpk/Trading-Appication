@@ -6,9 +6,9 @@
 
 ## Quick Start
 - Prequiresites:
-&ensp; -JRD virtual machine
-&ensp; - centOS 7
-&ensp; - Java 8
+ <p style="text-indent:2em">x-JRD virtual machine</p>
+  - centOS 7<p style="text-indent:2em">- centOS 7</p>
+  - Java 8<p style="text-indent:2em">- Java 8</p>
 - PSQL init
 - git clone and mvn build
 - Strating Springboot app using a shell script
