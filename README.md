@@ -32,6 +32,7 @@
 
 #### app-controller
 - **GET**
+<pre>/health to make sure SpringBoot app is up and running</pre>
 #### dashboard-controller
 - **GET**
 #### order-controller
