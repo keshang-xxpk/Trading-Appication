@@ -3,6 +3,13 @@
 - This project is an online stock trading simulation REST API which can handle options for user to manage their trading account,buy and sell stock,get the latest data from the stock market,and ect.
 - Front-end developer,mobile developer,traders and use it easliy.
 - It is a MicroService which implemented with SpringBoot framework and build JDBC through Spring.Iex market data as our source data and PSQL is the database I use in this project.
+-Quick link:
+  [SpringBoot](https://spring.io/projects/spring-boot)
+  [PSQL](https://www.postgresql.org)
+  [IEX Market data](https://iexcloud.io)
+  [Swagger](https://swagger.io)
+  
+
 
 ## Quick Start
  - Prequiresites:
