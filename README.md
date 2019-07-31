@@ -23,3 +23,14 @@
 - Strating Springboot app using a shell script
 - Sign up an account on IEX.
 -IEX token for getting market data (https://iexcloud.io/docs/api/)
+
+## REST API Usage
+### Swagger
+- Swagger is a powerful yet easy-to-use suite of API developer tools for teams and individuals, enabling development across the entire API lifecycle, from design and documentation, to test and deployment.
+- Swagger provides a set of tools that help programmers generate client or server code and install self-generated documentation for web services.
+### App controller
+#### app-controller
+#### dashboard-controller
+#### order-controller
+#### quote-controller
+#### trader-controller
