@@ -68,3 +68,4 @@
 <pre>Withdraw a fund</pre>
 
 ## Architechture
+!(https://github.com/keshang-xxpk/Trading-Appication/blob/master/Trading-app-architicture.png)
