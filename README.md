@@ -31,18 +31,29 @@
 ### Trading App controller
 
 #### app-controller
-- **GET**
+- **GET /health**
 <pre>/health to make sure SpringBoot app is up and running</pre>
 #### dashboard-controller
-- **GET**
+- **GET /dashboard/portfolio/traderId/{traderId}**
+<pre>Show portfolio by trader ID</pre>
+- **GET /dashboard/profile/traderId/{traderId}**
+<pre>Show trader profile by trader ID</pre>
 #### order-controller
-- **POST**
+-Order controller implements OrderService.
+- **POST /order/marketOrder**
+<pre>Submit a market order with DTO</pre>
 #### quote-controller
-- **GET**
-- **GET**
-- **POST**
-- **PUT**
-- **PUT**
+-   Quote controller implements QuoteService.It can allow users to sell and buy stock.It can get data through MarketDataDao from IEX.Update the user's account in database.
+- **GET /quote/dailyList**
+<pre>list all securities that are available to trading in this trading system</pre>
+- **GET /quote/iex/ticker/{ticker}**
+<pre>Show iexQuote for a given ticker/symbol from IEX which is an external market data source</pre>
+- **POST /quote/tickerId/{tickerId}**
+<pre>Add a new ticker/symbol to the quote table, so trader can trade this security.</pre>
+- **PUT /quote/**
+<pre>Manually update a quote in the quote table</pre>
+- **PUT /quote/iexMarketData**
+<pre>Update all quotes from IEX</pre>
 #### trader-controller
 - **DELETE**
 - **POST**
