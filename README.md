@@ -39,7 +39,7 @@
 - **GET /dashboard/profile/traderId/{traderId}**
 <pre>Show trader profile by trader ID</pre>
 #### order-controller
-- <preOrder controller implements OrderService.</pre>
+- <pre>Order controller implements OrderService.</pre>
 - **POST /order/marketOrder**
 <pre>Submit a market order with DTO</pre>
 #### quote-controller
@@ -55,8 +55,14 @@
 - **PUT /quote/iexMarketData**
 <pre>Update all quotes from IEX</pre>
 #### trader-controller
-- **DELETE**
-- **POST**
-- **POST**
-- **PUT**
-- **PUT**
+- <pre>Trader controller implements FundTransferService and RegisterService. It could manage trader and account information such as create a new account and delete an exist account. Also, it could deposit and withdraw fund from a given account.</pre>
+- **DELETE /trader/traderId/{traderId}**
+<pre>Delete a trader</pre>
+- **POST /trader/**
+<pre>Create a trader and an account with DTO</pre>
+- **POST /trader/firstname/{firstname}/lastname/{lastname}/dob/{dob}/country/{country}/email/{email}**
+<pre>Create a trader and an account with url</pre>
+- **PUT /trader/deposit/traderId/{traderId}/amount/{amount}**
+<pre>Deposit a fund</pre>
+- **PUT /trader/withdraw/traderId/{traderId}/amount/{amount}**
+<pre>Withdraw a fund</pre>
