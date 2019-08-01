@@ -76,7 +76,7 @@
 - SecurityOdreDao
 - PositionDao
 - MarketDataDao
-### Service Layer(Bussiness Logic)<pre>he service layer stands on DAO to handle business requirements.Inside the service, we could design different business logic such as implementing validations, constraints and so on.</pre>
+### Service Layer(Bussiness Logic)<pre>The service layer stands on DAO to handle business requirements.Inside the service, we could design different business logic such as implementing validations, constraints and so on.</pre>
 - DashboardService
 - FundTransferService
 - OrderService
