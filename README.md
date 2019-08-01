@@ -69,3 +69,22 @@
 
 ## Architechture
 ![](https://github.com/keshang-xxpk/Trading-Appication/blob/master/Trading-app-architicture.png)
+### Data Access Object(DAO)
+#### TraderDao
+#### AccountDao
+#### QuoteDao
+#### SecurityOdreDao
+#### PositionDao
+#### MarketDataDao
+### Service Layer(Bussiness Logic)
+#### DashboardService
+#### FundTransferService
+#### OrderService
+#### RegisterService
+#### QuoteService
+### Controller(PREST API)
+#### DashboardController
+#### TraderController
+#### OrderController
+#### QuoteController
+
