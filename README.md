@@ -66,3 +66,5 @@
 <pre>Deposit a fund</pre>
 - **PUT /trader/withdraw/traderId/{traderId}/amount/{amount}**
 <pre>Withdraw a fund</pre>
+
+## Architechture
