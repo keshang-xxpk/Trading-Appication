@@ -47,7 +47,7 @@
 - **POST /order/marketOrder**
 <pre>Submit a market order with DTO</pre>
 #### quote-controller
--  <pre>Quote controller implements QuoteService.It can allow users to sell and buy stock.It can get data through MarketDataDao from IEX.Update the user's account in database.</pre>
+<pre>Quote controller implements QuoteService.It can allow users to sell and buy stock.It can get data through MarketDataDao from IEX.Update the user's account in database.</pre>
 - **GET /quote/dailyList**
 <pre>list all securities that are available to trading in this trading system</pre>
 - **GET /quote/iex/ticker/{ticker}**
