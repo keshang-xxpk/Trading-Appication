@@ -73,20 +73,20 @@
 
 ## Architechture
 ![](https://github.com/keshang-xxpk/Trading-Appication/blob/master/Trading-app-architicture.png)
-### Data Access Object(DAO):<pre>DAO stands for data access object. It provides a CRUD interface for a single entity.</pre>
+### Data Access Object(DAO):<br>DAO stands for data access object. It provides a CRUD interface for a single entity.</br>
 - TraderDao
 - AccountDao
 - QuoteDao
 - SecurityOdreDao
 - PositionDao
 - MarketDataDao
-### Service Layer(Bussiness Logic)<pre>The service layer stands on DAO to handle business requirements.Inside the service, we could design different business logic such as implementing validations, constraints and so on.</pre>
+### Service Layer(Bussiness Logic)<br>The service layer stands on DAO to handle business requirements.Inside the service, we could design different business logic such as implementing validations, constraints and so on.</br>
 - DashboardService
 - FundTransferService
 - OrderService
 - RegisterService
 - QuoteService
-### Controller(PREST API)<pre>Controllers receive input, and generate output. They would handle the navigation between the different views</pre>
+### Controller(PREST API)<br>Controllers receive input, and generate output. They would handle the navigation between the different views</br>
 - DashboardController
 - TraderController
 - OrderController
