@@ -92,5 +92,5 @@
 - OrderController
 - QuoteController
 ## Improvement
-- Build the project on Docker and pull it on AWS.
+- Build the project on Docker and pull it on AWS cloud server.
 
