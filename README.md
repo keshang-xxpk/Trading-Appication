@@ -1,4 +1,9 @@
 # Trading Application
+- [Introduction](#Introduction)
+- [Quick Start](#Quick Start)
+- [REST API Usage](#REST API Usage)
+- [Architechture](#Architechture)
+- [Improvement](#Improvement)
 ## Introduction
 - This project is an online stock trading simulation REST API which can handle options for user to manage their trading account,buy and sell stock,get the latest data from the stock market,and ect.
 - Front-end developer,mobile developer,traders and use it easliy.
@@ -7,8 +12,7 @@
   [SpringBoot](https://spring.io/projects/spring-boot)<br>
   [PSQL](https://www.postgresql.org)<br>
   [IEX Market data](https://iexcloud.io)<br>
-  [Swagger](https://swagger.io)
-  
+  [Swagger](https://swagger.io)<br>
 
 
 ## Quick Start
