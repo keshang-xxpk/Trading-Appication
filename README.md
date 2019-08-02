@@ -1,7 +1,7 @@
 # Trading Application
 - [Introduction](#Introduction)
-- [Quick Start](#Quick Start)
-- [REST API Usage](#REST API Usage)
+- [Quick Start](#Quick-Start)
+- [REST API Usage](#REST-API-Usage)
 - [Architechture](#Architechture)
 - [Improvement](#Improvement)
 ## Introduction
