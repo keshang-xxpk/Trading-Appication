@@ -20,14 +20,14 @@ import java.util.List;
 
 /**
  * public interface CrudRepository<E,ID> {
- *     E save(E entity);
- *     E findById(ID id);
- *     boolean existsById(ID id);
- *     void deleteById(ID id);
+ * E save(E entity);
+ * E findById(ID id);
+ * boolean existsById(ID id);
+ * void deleteById(ID id);
  * }
  */
 @Repository
-public class QuoteDao extends JdbcCrudDao<Quote,String> {
+public class QuoteDao extends JdbcCrudDao<Quote, String> {
 
     private final String TABLE_NAME = "quote";
     private final String ID_NAME = "id";
@@ -42,59 +42,73 @@ public class QuoteDao extends JdbcCrudDao<Quote,String> {
     }
 
     @Override
-    public JdbcTemplate getJdbcTemplate() { return jdbcTemplate;}
+    public JdbcTemplate getJdbcTemplate() {
+        return jdbcTemplate;
+    }
 
     @Override
-    public SimpleJdbcInsert getSimpleJdbcInsert() { return simpleJdbcInsert;}
+    public SimpleJdbcInsert getSimpleJdbcInsert() {
+        return simpleJdbcInsert;
+    }
 
     @Override
-    public String getTableName() { return TABLE_NAME;}
+    public String getTableName() {
+        return TABLE_NAME;
+    }
 
     @Override
-    public String getIdName() { return ID_NAME;}
+    public String getIdName() {
+        return ID_NAME;
+    }
 
     @Override
-    Class getEntityClass() { return Quote.class;}
+    Class getEntityClass() {
+        return Quote.class;
+    }
+
     //finished
     @Override
     public Quote save(Quote quote) {
         SqlParameterSource parameterSource = new BeanPropertySqlParameterSource(quote);
         int row = getSimpleJdbcInsert().execute(parameterSource);
-        if(row != 1) {
-            throw new IncorrectResultSizeDataAccessException("Failed to insert!",1,row);
+        if (row != 1) {
+            throw new IncorrectResultSizeDataAccessException("Failed to insert!", 1, row);
         }
         return quote;
     }
-//finished
+
+    //finished
     public List<Quote> findAll() {
         String sql = "SELECT * FROM " + TABLE_NAME;
-        return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Quote.class ));
+        return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Quote.class));
     }
+
     //finished
     public void deleteById(String idName, ID id) {
-        if (id ==null) {
+        if (id == null) {
             throw new IllegalArgumentException("Invaild ID!");
         }
         String sql = "DELETE FROM " + getTableName() + "WHERE" + idName + "= ?";
-        getJdbcTemplate().update(sql,id);
+        getJdbcTemplate().update(sql, id);
     }
 
     //public boolean existsById(String id) {
-        //return false;
+    //return false;
     //}
 
-    /**public Quote findById(String idName, ID id,boolean forUpdate,Class clazz) {
-        if (id ==null) {
-            throw new IllegalArgumentException("Invaild ID!");
-        }
-        String sql = "DELETE FROM " + getTableName() + "WHERE" + idName + "= ?";
-        getJdbcTemplate().update(sql,id);
-        return null;
-    }
+    /**
+     * public Quote findById(String idName, ID id,boolean forUpdate,Class clazz) {
+     * if (id ==null) {
+     * throw new IllegalArgumentException("Invaild ID!");
+     * }
+     * String sql = "DELETE FROM " + getTableName() + "WHERE" + idName + "= ?";
+     * getJdbcTemplate().update(sql,id);
+     * return null;
+     * }
      */
 
     //finished
-    public void update(List<Quote> quotes){
+    public void update(List<Quote> quotes) {
         /**
          * "askPrice",1
          *         "askSize",1
@@ -112,10 +126,10 @@ public class QuoteDao extends JdbcCrudDao<Quote,String> {
                 "ask_price WHERE ticker=?";
         List<Object[]> batch = new ArrayList<>();
         quotes.forEach(quote -> {
-            if(!existsById(quote.getTicker())) {
+            if (!existsById(quote.getTicker())) {
                 throw new ResourceNotFoundException("Ticker not found" + quote.getTicker());
             }
-            Object[] values = new Object[] {
+            Object[] values = new Object[]{
                     quote.getLastPrice(),
                     quote.getAskSize(),
                     quote.getAskPrice(),
@@ -125,10 +139,10 @@ public class QuoteDao extends JdbcCrudDao<Quote,String> {
             batch.add(values);
         });
 
-        int[] rows = jdbcTemplate.batchUpdate(updateSql,batch);
+        int[] rows = jdbcTemplate.batchUpdate(updateSql, batch);
         int totalRow = Arrays.stream(rows).sum();
-        if(totalRow != quotes.size()) {
-            throw new IncorrectResultSizeDataAccessException("number of rows",quotes.size(),totalRow);
+        if (totalRow != quotes.size()) {
+            throw new IncorrectResultSizeDataAccessException("number of rows", quotes.size(), totalRow);
         }
     }
 }

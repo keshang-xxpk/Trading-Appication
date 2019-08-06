@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@Api(value = "App",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@Api(value = "App", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @Controller
 @RequestMapping("/")
 public class AppController {

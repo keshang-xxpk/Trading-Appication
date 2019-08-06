@@ -58,18 +58,18 @@ public class TraderDao implements CrudRepository<Trader, Integer> {
 
     @Override
     public boolean existsById(Integer id) {
-        if(id == null) {
+        if (id == null) {
             throw new IllegalArgumentException("ID can not be null");
         }
-        Integer count = jdbcTemplate.queryForObject("select count(*) from" + TABLE_NAME + "where id = ?",Integer.class,id);
-        return count != null &&count != 0;
+        Integer count = jdbcTemplate.queryForObject("select count(*) from" + TABLE_NAME + "where id = ?", Integer.class, id);
+        return count != null && count != 0;
     }
 
     @Override
     public void deleteById(Integer id) {
-        if(id == null) {
+        if (id == null) {
             throw new IllegalArgumentException("ID does not exist!");
         }
-        jdbcTemplate.update("delete from" + TABLE_NAME + "where id = ?",id);
+        jdbcTemplate.update("delete from" + TABLE_NAME + "where id = ?", id);
     }
 }

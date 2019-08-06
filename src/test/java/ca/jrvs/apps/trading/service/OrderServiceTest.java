@@ -73,6 +73,7 @@ public class OrderServiceTest {
         Mockito.when(positionDao.findByIdAndTicker(account.getId(), marketOrderDto.getTicker()))
                 .thenReturn(position);
     }
+
     @Test
     public void buyOrderFilledTest() {
         String filled = "FILLED";

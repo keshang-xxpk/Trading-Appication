@@ -29,18 +29,18 @@ public class PositionDao {
 
     public List<Position> findByAccountId(Integer accountId) {
         String selectSql = "SELECT position FROM" + TABLE_NAME + "WHERE account_id =";
-        return jdbcTemplate.query(selectSql, BeanPropertyRowMapper.newInstance(Position.class),accountId);
+        return jdbcTemplate.query(selectSql, BeanPropertyRowMapper.newInstance(Position.class), accountId);
 
     }
 
-    public Long findByIdAndTicker(Integer accountId,String ticker) {
+    public Long findByIdAndTicker(Integer accountId, String ticker) {
         String selectSql = "SELECT position FROM" + TABLE_NAME + "WHERE account_id =? AND ticker =?";
         Long position = 0L;
         try {
-            position = jdbcTemplate.queryForObject(selectSql,Long.class,accountId,ticker);
-        } catch (EmptyResultDataAccessException e){
+            position = jdbcTemplate.queryForObject(selectSql, Long.class, accountId, ticker);
+        } catch (EmptyResultDataAccessException e) {
             logger.debug(String.
-                    format("select position from position accountId=%s and ticker=%s",accountId,ticker));
+                    format("select position from position accountId=%s and ticker=%s", accountId, ticker));
         }
         return position;
     }

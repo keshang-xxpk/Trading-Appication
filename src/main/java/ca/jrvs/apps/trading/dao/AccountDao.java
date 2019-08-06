@@ -12,9 +12,9 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 
 @Repository
-public class AccountDao extends JdbcCrudDao<Account,Integer> {
-    private static  final Logger logger = LoggerFactory.getLogger(AccountDao.class);
-    private static  final String TABLE_NAME = "account";
+public class AccountDao extends JdbcCrudDao<Account, Integer> {
+    private static final Logger logger = LoggerFactory.getLogger(AccountDao.class);
+    private static final String TABLE_NAME = "account";
     private static final String ID_NAME = "id";
     private JdbcTemplate jdbcTemplate;
     private SimpleJdbcInsert simpleJdbcInsert;
@@ -26,39 +26,51 @@ public class AccountDao extends JdbcCrudDao<Account,Integer> {
     }
 
     @Override
-    public JdbcTemplate getJdbcTemplate() { return jdbcTemplate;}
+    public JdbcTemplate getJdbcTemplate() {
+        return jdbcTemplate;
+    }
 
     @Override
-    public SimpleJdbcInsert getSimpleJdbcInsert() { return simpleJdbcInsert;}
+    public SimpleJdbcInsert getSimpleJdbcInsert() {
+        return simpleJdbcInsert;
+    }
 
     @Override
-    public String getTableName() { return TABLE_NAME;}
+    public String getTableName() {
+        return TABLE_NAME;
+    }
 
     @Override
-    public String getIdName() { return ID_NAME;}
+    public String getIdName() {
+        return ID_NAME;
+    }
 
     @Override
-    Class getEntityClass() { return Account.class;}
+    Class getEntityClass() {
+        return Account.class;
+    }
 
 
     @Override
-    public Account save(Account entity) { return super.save(entity); }
+    public Account save(Account entity) {
+        return super.save(entity);
+    }
 
     public Account findByTraderId(Integer traderId) {
-        return super.findById("trader_id",traderId,false,getEntityClass());
+        return super.findById("trader_id", traderId, false, getEntityClass());
     }
 
     public Account findByTraderIdForUpdate(Integer traderId) {
-        return super.findById("trader_id",traderId,true,getEntityClass());
+        return super.findById("trader_id", traderId, true, getEntityClass());
     }
 
-    public Account updateAmountById(Integer id,Double amount) {
+    public Account updateAmountById(Integer id, Double amount) {
         if (super.existsById(id)) {
             String str = "UPDATE" + getTableName() + "SET amount = ? WHERE id = ?";
-            int row = jdbcTemplate.update(str,amount,id);
+            int row = jdbcTemplate.update(str, amount, id);
             logger.debug("Update amount row =" + row);
             if (row != 1) {
-                throw new IncorrectResultSizeDataAccessException(1,row);
+                throw new IncorrectResultSizeDataAccessException(1, row);
             }
             return findById(id);
         }

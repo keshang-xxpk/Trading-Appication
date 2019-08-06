@@ -26,8 +26,8 @@ public class SwaggerConfig {
                         "A Spring Rest API",
                         "v1.0",
                         null,
-                        new Contact("Ke Shang","jrvs.ca","ke.shang.jrvs.ca@gmail.com"),
-                        null,null,
+                        new Contact("Ke Shang", "jrvs.ca", "ke.shang.jrvs.ca@gmail.com"),
+                        null, null,
                         new ArrayList<>()));
     }
 

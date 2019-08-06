@@ -37,7 +37,7 @@ public class AppConfig {
 
     @Bean
     public MarketDataConfig marketDataConfig() {
-        if (StringUtils.isEmpty(System.getenv("IEX_PUB_TOKEN")) || StringUtils.isEmpty(IEX_HOST)){
+        if (StringUtils.isEmpty(System.getenv("IEX_PUB_TOKEN")) || StringUtils.isEmpty(IEX_HOST)) {
             throw new IllegalArgumentException("IEX_PUB_TOKEN OR IEX_HOST IS EMPTY.");
         }
 
@@ -48,16 +48,14 @@ public class AppConfig {
     }
 
     /**
-     * @Bean
-       public DataSource dataSource() {
-     }
+     * @Bean public DataSource dataSource() {
+    }
      *
      *
      */
     /**
-   @Bean
-   public DataSource dataSource() {
-   }
+     * @Bean public DataSource dataSource() {
+     * }
      */
 
 
@@ -76,15 +74,15 @@ public class AppConfig {
         String user;
         String password;
 
-        if(!StringUtil.isEmpty(System.getenv("RDS_HOSTNAME"))){
+        if (!StringUtil.isEmpty(System.getenv("RDS_HOSTNAME"))) {
             throw new IllegalArgumentException("HOSTNAME doesn't exist!");
-        }else {
+        } else {
             jdbcUrl = System.getenv("PSQL_URL");
             user = System.getenv(("PSQL_USER"));
             password = System.getenv("PSQL_PASSWORD");
         }
         logger.error(("jdbc:" + jdbcUrl));
-        if(StringUtil.isEmpty(jdbcUrl,user,password)) {
+        if (StringUtil.isEmpty(jdbcUrl, user, password)) {
             throw new IllegalArgumentException(("Missing source configenv vars"));
         }
         BasicDataSource basicDataSource = new BasicDataSource();

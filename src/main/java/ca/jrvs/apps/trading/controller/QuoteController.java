@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collections;
 import java.util.List;
 
-@Api(value = "quote",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)//?
+@Api(value = "quote", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)//?
 @Controller
 @RequestMapping(value = "/quote")
 public class QuoteController {
@@ -34,8 +34,9 @@ public class QuoteController {
         this.quoteDao = quoteDao;
         this.marketDataDao = marketDataDao;
     }
+
     @ApiOperation(value = "show iexQuote",
-                notes = "show iexQuote for a given ticker/symbol")
+            notes = "show iexQuote for a given ticker/symbol")
     @PutMapping(path = "/iexMarketData")
     @ResponseStatus(HttpStatus.OK)
     public void updateMarketData() {
@@ -45,8 +46,9 @@ public class QuoteController {
             throw ResponseExceptionUtil.getResponseStatusException(e);
         }
     }
+
     @ApiOperation(value = "Update a given quote in the quote table",
-                notes = "Manually update a quote in the quote table using IEX market data")
+            notes = "Manually update a quote in the quote table using IEX market data")
     @PutMapping(path = "/")
     @ResponseStatus(HttpStatus.OK)
     public void putQuote(@RequestBody Quote quote) {
@@ -56,11 +58,12 @@ public class QuoteController {
             throw ResponseExceptionUtil.getResponseStatusException(e);
         }
     }
+
     @ApiOperation(value = "Add a new ticker to the dailyList(quote table)",
             notes = "Add a new ticker/symbol to the quote table,so trader can trade this security.")
     @PostMapping(path = "/tickerId/{tickerId}")
     @ResponseStatus(HttpStatus.CREATED)
-    @ApiResponses(value = {@ApiResponse(code = 404,message = "ticker is not found in IEX system")})
+    @ApiResponses(value = {@ApiResponse(code = 404, message = "ticker is not found in IEX system")})
     public void createQuote(@PathVariable String tickerId) {
         try {
             quoteService.initQuote(tickerId);
@@ -69,7 +72,7 @@ public class QuoteController {
         }
     }
 
-    @ApiOperation(value = "Show the dailyList",notes = "Show dailyList for this trading system,DailyList = Quote Table")
+    @ApiOperation(value = "Show the dailyList", notes = "Show dailyList for this trading system,DailyList = Quote Table")
     @GetMapping(path = "/dailyList")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
@@ -81,8 +84,8 @@ public class QuoteController {
         }
     }
 
-    @ApiOperation(value = "Show the dailyList",notes = "new dailyList for this trading system.DailyList = Quote Table")
-    @ApiResponses(value = {@ApiResponse(code = 404,message = "ticker is not found")})
+    @ApiOperation(value = "Show the dailyList", notes = "new dailyList for this trading system.DailyList = Quote Table")
+    @ApiResponses(value = {@ApiResponse(code = 404, message = "ticker is not found")})
     @GetMapping(path = "/iex/ticker/{ticker}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody

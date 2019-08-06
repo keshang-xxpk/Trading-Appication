@@ -46,7 +46,7 @@ public abstract class JdbcCrudDao<E extends Entity, ID> implements CrudRepositor
 
     /**
      * @return an entity
-     * @throws java.sql.SQLException if sql execution failed
+     * @throws java.sql.SQLException     if sql execution failed
      * @throws ResourceNotFoundException if no entity is found in db
      */
     @SuppressWarnings("unchecked")

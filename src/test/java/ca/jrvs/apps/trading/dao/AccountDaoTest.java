@@ -71,7 +71,7 @@ public class AccountDaoTest {
 
     @Test
     public void updateAmountById() {
-        Account account = accountDao.updateAmountById(1,100.0);
+        Account account = accountDao.updateAmountById(1, 100.0);
         savedAccount = accountDao.findByIdForUpdate(1);
         assertTrue(account.getAmount() == savedAccount.getAmount());
     }

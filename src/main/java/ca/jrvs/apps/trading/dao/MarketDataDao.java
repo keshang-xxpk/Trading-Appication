@@ -27,90 +27,90 @@ import java.util.Optional;
 @Repository
 public class MarketDataDao {
 
-  private Logger logger = LoggerFactory.getLogger(MarketDataDao.class);
+    private Logger logger = LoggerFactory.getLogger(MarketDataDao.class);
 
-  private final String BATCH_QUOTE_URL;
-  private HttpClientConnectionManager httpClientConnectionManager;
+    private final String BATCH_QUOTE_URL;
+    private HttpClientConnectionManager httpClientConnectionManager;
 
-  @Autowired
-  public MarketDataDao(HttpClientConnectionManager httpClientConnectionManager,
-      MarketDataConfig marketDataConfig) {
-    this.httpClientConnectionManager = httpClientConnectionManager;
-    BATCH_QUOTE_URL =
-        marketDataConfig.getHost() + "/stock/market/batch?symbols=%s&types=quote&token="
-            + marketDataConfig.getToken();
-  }
-
-  /**
-   * @throws DataRetrievalFailureException if unable to get http response
-   */
-  public List<IexQuote> findIexQuoteByTicker(List<String> tickerList) {
-    //convert list into comma separated string
-    String tickers =  StringUtils.join(tickerList, ',');
-    String uri = String.format(BATCH_QUOTE_URL,tickers);
-    logger.info("Get URI:" + uri);
-    //Get Http response body in string
-    String response = executeHttpGet(uri);
-    //Iex will skip invalid symbols/ticker..we need to check it
-      JSONObject IexQuotesJson = new JSONObject(response);
-    if(IexQuotesJson.length() == 0) {
-        throw new IllegalArgumentException("Can not find the ticker");
-    }
-    if (IexQuotesJson.length() != tickerList.size()) {
-      throw new IllegalArgumentException("Invalid ticker/symbol");
+    @Autowired
+    public MarketDataDao(HttpClientConnectionManager httpClientConnectionManager,
+                         MarketDataConfig marketDataConfig) {
+        this.httpClientConnectionManager = httpClientConnectionManager;
+        BATCH_QUOTE_URL =
+                marketDataConfig.getHost() + "/stock/market/batch?symbols=%s&types=quote&token="
+                        + marketDataConfig.getToken();
     }
 
-    //Unmarshal JSON object
-      ObjectMapper mapper = new ObjectMapper();
-    List<IexQuote> iexQuotes = new ArrayList<>();
-    IexQuotesJson.keys().forEachRemaining(ticker -> {
-      try {
-        String quoteStr = ((JSONObject) IexQuotesJson.get(ticker)).get("quote").toString();
-        IexQuote iexQuote = JsonUtil.toObjectFromJson(quoteStr,IexQuote.class);
-        iexQuotes.add(iexQuote);
-      } catch (IOException e) {
-        throw new DataRetrievalFailureException("Unable parse response:" + IexQuotesJson.get(ticker),e);
-      }
-    });
-    return iexQuotes;
-  }
-
-  public IexQuote findIexQuoteByTicker(String ticker) {
-    List<IexQuote> quotes = findIexQuoteByTicker(Arrays.asList(ticker));
-    if (quotes == null || quotes.size() != 1) {
-      throw new DataRetrievalFailureException("Unable to get data");
-    }
-    return quotes.get(0);
-  }
-
-  protected String executeHttpGet(String url) {
-    try (CloseableHttpClient httpClient = getHttpClient()) {
-      HttpGet httpGet = new HttpGet(url);
-      try (CloseableHttpResponse response = httpClient.execute(httpGet)) {
-        switch (response.getStatusLine().getStatusCode()) {
-          case 200:
-            //EntityUtils toString will also close inputStream in Entity
-            String body = EntityUtils.toString(response.getEntity());
-            return Optional.ofNullable(body).orElseThrow(
-                () -> new IOException("Unexpected empty http response body"));
-          case 404:
-            throw new ResourceNotFoundException("NOT FIND");
-          default:
-            throw new DataRetrievalFailureException(
-                "Unexpected status:" + response.getStatusLine().getStatusCode());
+    /**
+     * @throws DataRetrievalFailureException if unable to get http response
+     */
+    public List<IexQuote> findIexQuoteByTicker(List<String> tickerList) {
+        //convert list into comma separated string
+        String tickers = StringUtils.join(tickerList, ',');
+        String uri = String.format(BATCH_QUOTE_URL, tickers);
+        logger.info("Get URI:" + uri);
+        //Get Http response body in string
+        String response = executeHttpGet(uri);
+        //Iex will skip invalid symbols/ticker..we need to check it
+        JSONObject IexQuotesJson = new JSONObject(response);
+        if (IexQuotesJson.length() == 0) {
+            throw new IllegalArgumentException("Can not find the ticker");
         }
-      }
-    } catch (IOException e) {
-      throw new DataRetrievalFailureException("Unable Http execution error", e);
-    }
-  }
+        if (IexQuotesJson.length() != tickerList.size()) {
+            throw new IllegalArgumentException("Invalid ticker/symbol");
+        }
 
-  private CloseableHttpClient getHttpClient() {
-    return HttpClients.custom()
-        .setConnectionManager(httpClientConnectionManager)
-        //prevent connectionManager shutdown when calling httpClient.close()
-        .setConnectionManagerShared(true)
-        .build();
-  }
+        //Unmarshal JSON object
+        ObjectMapper mapper = new ObjectMapper();
+        List<IexQuote> iexQuotes = new ArrayList<>();
+        IexQuotesJson.keys().forEachRemaining(ticker -> {
+            try {
+                String quoteStr = ((JSONObject) IexQuotesJson.get(ticker)).get("quote").toString();
+                IexQuote iexQuote = JsonUtil.toObjectFromJson(quoteStr, IexQuote.class);
+                iexQuotes.add(iexQuote);
+            } catch (IOException e) {
+                throw new DataRetrievalFailureException("Unable parse response:" + IexQuotesJson.get(ticker), e);
+            }
+        });
+        return iexQuotes;
+    }
+
+    public IexQuote findIexQuoteByTicker(String ticker) {
+        List<IexQuote> quotes = findIexQuoteByTicker(Arrays.asList(ticker));
+        if (quotes == null || quotes.size() != 1) {
+            throw new DataRetrievalFailureException("Unable to get data");
+        }
+        return quotes.get(0);
+    }
+
+    protected String executeHttpGet(String url) {
+        try (CloseableHttpClient httpClient = getHttpClient()) {
+            HttpGet httpGet = new HttpGet(url);
+            try (CloseableHttpResponse response = httpClient.execute(httpGet)) {
+                switch (response.getStatusLine().getStatusCode()) {
+                    case 200:
+                        //EntityUtils toString will also close inputStream in Entity
+                        String body = EntityUtils.toString(response.getEntity());
+                        return Optional.ofNullable(body).orElseThrow(
+                                () -> new IOException("Unexpected empty http response body"));
+                    case 404:
+                        throw new ResourceNotFoundException("NOT FIND");
+                    default:
+                        throw new DataRetrievalFailureException(
+                                "Unexpected status:" + response.getStatusLine().getStatusCode());
+                }
+            }
+        } catch (IOException e) {
+            throw new DataRetrievalFailureException("Unable Http execution error", e);
+        }
+    }
+
+    private CloseableHttpClient getHttpClient() {
+        return HttpClients.custom()
+                .setConnectionManager(httpClientConnectionManager)
+                //prevent connectionManager shutdown when calling httpClient.close()
+                .setConnectionManagerShared(true)
+                .build();
+    }
 }
 

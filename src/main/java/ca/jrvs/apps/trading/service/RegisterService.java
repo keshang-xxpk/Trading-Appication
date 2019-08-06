@@ -40,13 +40,13 @@ public class RegisterService {
      * @param trader trader info
      * @return traderAccountView
      * @throws ca.jrvs.apps.trading.dao.ResourceNotFoundException if ticker is not found from IEX
-     * @throws org.springframework.dao.DataAccessException if unable to retrieve data
-     * @throws IllegalArgumentException for invalid input
+     * @throws org.springframework.dao.DataAccessException        if unable to retrieve data
+     * @throws IllegalArgumentException                           for invalid input
      */
     public TraderAccountView createTraderAndAccount(Trader trader) {
         if (trader.getCountry() == null || trader.getDob() == null
-                ||trader.getEmail() == null ||trader.getFirstName() == null
-                || trader.getId() == null || trader.getLastName() == null ) {
+                || trader.getEmail() == null || trader.getFirstName() == null
+                || trader.getId() == null || trader.getLastName() == null) {
             throw new IllegalArgumentException("Invaild trader");
         }
         if (traderDao.existsById(trader.getId())) {
@@ -72,8 +72,8 @@ public class RegisterService {
      *
      * @param traderId
      * @throws ca.jrvs.apps.trading.dao.ResourceNotFoundException if ticker is not found from IEX
-     * @throws org.springframework.dao.DataAccessException if unable to retrieve data
-     * @throws IllegalArgumentException for invalid input
+     * @throws org.springframework.dao.DataAccessException        if unable to retrieve data
+     * @throws IllegalArgumentException                           for invalid input
      */
     public void deleteTraderById(Integer traderId) {
         Trader trader = traderDao.findById(traderId);
@@ -81,7 +81,7 @@ public class RegisterService {
             throw new IllegalArgumentException("Input traderId is empty.Please input an  valid traderId!");
         }
         Account account = accountDao.findByTraderId(traderId);
-        if(account.getAmount() != 0) {
+        if (account.getAmount() != 0) {
             throw new IllegalArgumentException("Can not delete trader because balance is not 0!");
         }
         List<Position> positions = positionDao.findByAccountId(account.getId());

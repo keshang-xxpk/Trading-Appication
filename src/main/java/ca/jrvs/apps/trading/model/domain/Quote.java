@@ -15,7 +15,7 @@ import java.util.Map;
         "lastPrice",
         "ticker"
 })
-public class Quote implements Entity<String>{
+public class Quote implements Entity<String> {
 
     @JsonProperty("askPrice")
     private Integer askPrice;
@@ -103,7 +103,6 @@ public class Quote implements Entity<String>{
     public void setTicker(String ticker) {
         this.ticker = ticker;
     }
-
 
 
 }

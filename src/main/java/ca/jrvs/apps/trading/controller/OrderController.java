@@ -14,7 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Api(value = "order",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@Api(value = "order", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @Controller
 @RequestMapping("/order")
 public class OrderController {
@@ -24,17 +24,18 @@ public class OrderController {
     public OrderController(OrderService orderService) {
         this.orderService = orderService;
     }
+
     @ApiOperation(value = "Submit a market order", notes = "Submit a market order.")
     @ApiResponses(value = {
-            @ApiResponse(code = 404,message = "accountId or ticker is not valid"),
-            @ApiResponse(code = 400,message  = "Uable to deposit due to user input")})
+            @ApiResponse(code = 404, message = "accountId or ticker is not valid"),
+            @ApiResponse(code = 400, message = "Uable to deposit due to user input")})
     @PostMapping(path = "/marketOrder")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public SecurityOrder postMarketOrder(@RequestBody MarketOrderDto orderDto) {
         try {
             return orderService.executeMarketOrder(orderDto);
-    } catch (Exception e) {
+        } catch (Exception e) {
             throw ResponseExceptionUtil.getResponseStatusException(e);
         }
 

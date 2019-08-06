@@ -16,7 +16,7 @@ import java.util.Map;
         "notes"
 })
 
-public class SecurityOrder implements Entity<Integer>{
+public class SecurityOrder implements Entity<Integer> {
 
     @JsonProperty("id")
     private Integer id;

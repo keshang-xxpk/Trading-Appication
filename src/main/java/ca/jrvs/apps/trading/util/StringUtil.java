@@ -8,10 +8,9 @@ public class StringUtil {
         return true;
     }
 
-    public static boolean isEmpty(String ...strings) {
-        for(String str : strings)
-        {
-            if(!isEmpty(str)){
+    public static boolean isEmpty(String... strings) {
+        for (String str : strings) {
+            if (!isEmpty(str)) {
                 return false;
             }
         }
