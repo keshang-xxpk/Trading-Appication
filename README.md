@@ -88,7 +88,7 @@
 - OrderService
 - RegisterService
 - QuoteService
-### Controller(PREST API)
+### Controller(REST API)
 #### <br>Controllers receive input, and generate output. They would handle the navigation between the different views</br>
 - DashboardController
 - TraderController
