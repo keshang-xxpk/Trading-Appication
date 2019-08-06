@@ -88,7 +88,7 @@
 - OrderService
 - RegisterService
 - QuoteService
-### Controller(PREST API)
+### Controller(REST API)
 #### <br>Controllers receive input, and generate output. They would handle the navigation between the different views</br>
 - DashboardController
 - TraderController
@@ -96,4 +96,8 @@
 - QuoteController
 ## Improvement
 - Build the project on Docker and pull it on AWS cloud server.
+- Can not support large amount of user
+- Latency problem.
+- No backup data.
+- No UI frontend design.(Use Swagger in demo)
 
