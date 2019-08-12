@@ -72,7 +72,7 @@
 <pre>Withdraw a fund</pre>
 
 ## Architechture
-![](https://github.com/keshang-xxpk/Trading-Appication)
+![](https://github.com/keshang-xxpk/Trading-Appication/blob/master/assert/trading_app_diagrem.png)
 ### Data Access Object(DAO):
 #### <br>DAO stands for data access object. It provides a CRUD interface for a single entity.</br>
 - TraderDao
